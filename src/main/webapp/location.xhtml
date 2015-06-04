@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>App Monitoring</title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+    <ui:include src="header.xhtml"/>
+    <div class="container" style="padding-top: 25px;">
+        <h:form id="locationForm">
+        <p:panel id="locationPanel" widgetVar="locationPanel" visible="true" closable="true" toggleable="true" >
+            <p:panelGrid columns="2">
+
+                <h:outputLabel for="country" value="Country:" />
+                <p:inputText id="country" value="#{locationCreateView.location.country}"
+                             required="true" requiredMessage="Country is required!" >
+                    <f:validateLength minimum="1" maximum="100" />
+                </p:inputText>
+
+                <h:outputLabel for="city" value="City:" />
+                <p:inputText id="city" value="#{locationCreateView.location.city}"
+                             required="true" requiredMessage="City is required!" >
+                    <f:validateLength minimum="1" maximum="100" />
+                </p:inputText>
+
+                <p:commandButton value="Create" actionListener="#{locationCreateView.save}"
+                        validateClient="true" />
+                <p:commandButton value="Cancel" />
+            </p:panelGrid>
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+        </p:panel>
+    </h:form>
+    </div>
+</h:body>
+</html>

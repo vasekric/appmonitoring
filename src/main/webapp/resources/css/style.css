@@ -1,0 +1,35 @@
+.header {
+    height: 60px;
+    background: #00CCFF;
+    /*display: inline;*/
+}
+
+.header h5 {
+    color: white;
+    font-family: sans-serif;
+    margin: 30px;
+    float: right;
+}
+
+.header img {
+    height: inherit;
+    float: right !important;
+    background-color: #fff;
+    display: inline;
+}
+
+.header h2 {
+    margin: 0;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    display: inline;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}

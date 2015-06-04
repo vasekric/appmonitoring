@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>App Monitoring</title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+    <ui:include src="header.xhtml"/>
+    <div class="container" style="padding-top: 25px;">
+    <div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+    <div class="ui-grid-col-4">
+        <h:form id="locationViewForm">
+            <p:panel>
+                <p:dataTable value="#{locationView.locations}"
+                             var="location"
+                             id="locationTable"
+                             widgetVar="locationTable"
+                             scrollable="true"
+                             scrollHeight="600"
+                             selectionMode="single"
+                             selection="#{locationView.selectedLocation}"
+                             rowKey="#{location.id}">
+                    <p:column headerText="Country" sortBy="#{location.country}" >
+                        <h:outputText value="#{location.country}" />
+                    </p:column>
+                    <p:column headerText="City" sortBy="#{location.city}" >
+                        <h:outputText value="#{location.city}" />
+                    </p:column>
+                    <p:ajax event="rowSelect"
+                            oncomplete="PF('locationPanel').show()"
+                            update="locationForm"
+                            listener="#{locationView.rowSelect()}" />
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+    </div>
+    <div class="ui-grid-col-8">
+        <h:form id="locationForm">
+            <p:panel id="locationPanel" widgetVar="locationPanel" visible="false" closable="true" toggleable="true" >
+                <p:inputText id="locationid" value="#{locationView.selectedLocation.id}" disabled="true" >
+                </p:inputText>
+                <p:panelGrid columns="2">
+
+                    <h:outputLabel for="country" value="Country:" />
+                    <p:inputText id="country" value="#{locationView.selectedLocation.country}"
+                                 required="true" requiredMessage="Country is required!" >
+                        <f:validateLength minimum="1" maximum="100" />
+                    </p:inputText>
+
+                    <h:outputLabel for="city" value="City:" />
+                    <p:inputText id="city" value="#{locationView.selectedLocation.city}"
+                                 required="true" requiredMessage="City is required!" >
+                        <f:validateLength minimum="1" maximum="100" />
+                    </p:inputText>
+
+                    <p:commandButton value="Update" actionListener="#{locationView.update}"
+                            validateClient="true"
+                            update="locationViewForm" />
+                    <p:commandButton value="Delete" actionListener="#{locationView.delete}"
+                            oncomplete="PF('locationPanel').close()" />
+                    <p:commandButton value="Cancel"
+                            oncomplete="PF('locationPanel').close()" />
+                </p:panelGrid>
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+            </p:panel>
+        </h:form>
+    </div>
+    </div>
+    </div>
+    </div>
+</h:body>
+</html>

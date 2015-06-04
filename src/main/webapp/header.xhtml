@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:panelGroup layout="block" styleClass="header">
+        <h2>App Monitoring</h2>
+        <h:form>
+            <p:menuButton value="Create" style="  position: absolute; top: 15px; left: 20%;">
+                <p:menuitem value="Entity" />
+                <p:menuitem value="Configuration" />
+                <p:menuitem value="Observer" />
+                <p:menuitem value="Monitoring Type" />
+                <p:menuitem value="Location" onclick="window.location.href='http://localhost:8080/location.xhtml'" />
+            </p:menuButton>
+        </h:form>
+        <h:form>
+            <p:menuButton value="View" style="  position: absolute; top: 15px; left: 30%;">
+                <p:menuitem value="Profile" />
+                <p:menuitem value="My Entities" />
+                <p:menuitem value="My Configurations" onclick="window.location.href='http://localhost:8080/config.xhtml'" />
+                <p:menuitem value="Observers" />
+                <p:menuitem value="Monitoring Types" />
+                <p:menuitem value="Locations" onclick="window.location.href='http://localhost:8080/location-view.xhtml'" />
+            </p:menuButton>
+        </h:form>
+
+        <p:button href="http://localhost:8080/index.xhtml" value="Dashboard" style="position: absolute;
+                                                         top: 15px;
+                                                         left: 39%;"/>
+    </h:panelGroup>
+
+</ui:composition>
